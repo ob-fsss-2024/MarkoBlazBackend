@@ -3,6 +3,8 @@ package com.example.demo.notes;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class NoteController {
 
@@ -13,9 +15,9 @@ public class NoteController {
     }
 
     // tukaj dobimo note oz sporocilo
-    @GetMapping("/note/{id}")
-    public String getNote(@PathVariable Long id) {
-        return noteRepository.findById(id).get().getText();
+    @GetMapping("/note/{title}")
+    public List<NoteEntity> getNote(@PathVariable String title) {
+        return noteRepository.findAllByTitle(title);
 
     }
 

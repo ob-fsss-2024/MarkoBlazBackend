@@ -4,8 +4,6 @@ package com.example.demo;
 import com.example.demo.client.CoctailClient;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("coctails")
@@ -17,7 +15,7 @@ public class CoctailController {
     }
 
     @GetMapping()
-    public CocktailResponse getWeather(@RequestParam String coctailName) {
+    public CocktailResponse getCoctail(@RequestParam String coctailName) {
         return coctailClient.getCoctail(coctailName);
     }
 }

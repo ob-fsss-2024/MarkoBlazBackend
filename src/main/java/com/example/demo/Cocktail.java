@@ -1,5 +1,35 @@
 package com.example.demo;
 
-public record Cocktail(String idDrink) {
+public record Cocktail(
+        String idDrink,
+        String strDrink,
+        String strTags,
+        String strCategory,
+        String strIBA,
+        String strAlcoholic,
+        String strGlass,
+        String strInstructions,
+        String strDrinkThumb,
+        String strIngredient1,
+        String strIngredient2,
+        String strIngredient3,
+        String strIngredient4,
+        String strIngredient5,
+        String strIngredient6,
+        String strIngredient7,
+        String strIngredient8,
+        String strIngredient9,
+        String strMeasure1,
+        String strMeasure2,
+        String strMeasure3,
+        String strMeasure4,
+        String strMeasure5,
+        String strMeasure6,
+        String strMeasure7,
+        String strMeasure8,
+        String strMeasure9,
+        String strImageSource,
+        String strImageAttribution,
+        String strCreativeCommonsConfirmed
 
-}
+) {}

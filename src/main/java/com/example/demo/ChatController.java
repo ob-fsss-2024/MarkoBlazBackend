@@ -22,9 +22,7 @@ public class ChatController {
         this.chatModel = chatModel;
     }
 
-    @GetMapping("/ai/generate")
-    public Map generate(@RequestParam(value = "message", defaultValue = "Tell me a fun fact about coctail ") String message) {
-        return Map.of("generation", chatModel.call(message));
-    }
+
+
 
 }

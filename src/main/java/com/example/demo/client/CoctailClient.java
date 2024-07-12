@@ -8,4 +8,9 @@ import org.springframework.web.service.annotation.GetExchange;
 public interface CoctailClient {
     @GetExchange("/search.php?s={s}")
     CocktailResponse getCoctail(@PathVariable("s") String s);
+
+    @GetExchange("/lookup.php?i={cocktailid}")
+    CocktailResponse getCocktailbyId(@PathVariable String cocktailid);
 }
+
+

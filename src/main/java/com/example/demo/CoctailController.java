@@ -20,6 +20,9 @@ public class CoctailController {
     private final Logger logger = LoggerFactory.getLogger(CoctailController.class.getName());
     private final Counter coctailRequestCounter;
     private final Counter funFactRequestCounter;
+    private final Counter recipeRequestCounter;
+    private final Counter cocktailbyidCounter;
+
 
 
     @Autowired
@@ -28,6 +31,8 @@ public class CoctailController {
         this.chatModel = chatModel;
         this.coctailRequestCounter = meterRegistry.counter("coctail_requests");
         this.funFactRequestCounter = meterRegistry.counter("fun_fact_requests");
+        this.recipeRequestCounter = meterRegistry.counter("recipe_requests");
+        this.cocktailbyidCounter = meterRegistry.counter("cocktailbyid_requests");
     }
 
     @GetMapping()
@@ -39,9 +44,24 @@ public class CoctailController {
 
     @GetMapping("/funfact")
     public Map<String, String> getCoctailFunFact(@RequestParam String coctailName) {
-        logger.info("Fetching fun fact for cocktail {}", coctailName);
+        logger.info("Fetching fun fact about a cocktail {}", coctailName);
         funFactRequestCounter.increment();
         String message = "Tell me a fun fact about the cocktail " + coctailName + ". Make it short.";
         return Map.of("funFact", chatModel.call(message));
+    }
+
+    @GetMapping("/makemeacocktail")
+    public Map<String, String> getCoctailRecipe(@RequestParam String myMood) {
+        logger.info("Fetching the request for a recipe {}", myMood);
+        recipeRequestCounter.increment();
+        String message = "Give me a recipe for a cocktail based on my mood: " + myMood;
+        return Map.of("moodRecipe", chatModel.call(message));
+    }
+
+    @GetMapping("/cocktailbyid")
+    public CocktailResponse getCocktailById(@RequestParam String id) {
+        logger.info("Fetching cocktail for id {}", id);
+        cocktailbyidCounter.increment();
+        return coctailClient.getCocktailbyId(id);
     }
 }
